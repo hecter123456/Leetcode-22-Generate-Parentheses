@@ -9,6 +9,10 @@ class unitest(unittest.TestCase):
         Ans = ["()"]
         n = 1
         self.assertEqual(Solution().generateParenthesis(n),Ans)
+    def testNumberTwo(self):
+        Ans = ["(())","()()"]
+        n = 2
+        self.assertEqual(Solution().generateParenthesis(n),Ans)
 
 class Solution(object):
     def generateParenthesis(self, n):
