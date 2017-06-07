@@ -1,15 +1,15 @@
 import unittest
 
 class unitest(unittest.TestCase):
-    def testNumberZero(self):
+    def testNumberEqualZero(self):
         Ans = [""]
         n = 0
         self.assertEqual(Solution().generateParenthesis(n),Ans)
-    def testNumberOne(self):
+    def testNumberEqualOne(self):
         Ans = ["()"]
         n = 1
         self.assertEqual(Solution().generateParenthesis(n),Ans)
-    def testNumberTwo(self):
+    def testNumberEqualTwo(self):
         Ans = ["(())","()()"]
         n = 2
         self.assertEqual(Solution().generateParenthesis(n),Ans)
@@ -17,13 +17,17 @@ class unitest(unittest.TestCase):
 class Solution(object):
     def generateParenthesis(self, n):
         Ans = []
-        if n < 1:
-            AnsStr = ""
-            Ans.append(AnsStr)
-            return Ans
-        for i in range(0,n):
-            AnsStr = "()"
-            Ans.append(AnsStr)
+        stack = [("",0,0)]
+        for node,left,right in stack:
+            flag = True
+            if int(left) < n:
+                stack.append((node+"(",int(left)+1,int(right)))
+                flag = False
+            if int(left) > int(right):
+                stack.append((node+")",int(left),int(right)+1))
+                flag = False
+            if flag is True:
+                Ans.append(node)
         return Ans
 
 if __name__ == '__main__':
