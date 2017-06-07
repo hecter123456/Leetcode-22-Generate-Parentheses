@@ -17,16 +17,13 @@ class unitest(unittest.TestCase):
 class Solution(object):
     def generateParenthesis(self, n):
         Ans = []
-        stack = [("",0,0)]
+        stack = [("",int(0),int(0))]
         for node,left,right in stack:
-            flag = True
-            if int(left) < n:
-                stack.append((node+"(",int(left)+1,int(right)))
-                flag = False
-            if int(left) > int(right):
-                stack.append((node+")",int(left),int(right)+1))
-                flag = False
-            if flag is True:
+            if left < n:
+                stack.append((node+"(",left+1,right))
+            if left > right:
+                stack.append((node+")",left,right+1))
+            if right ==  n:
                 Ans.append(node)
         return Ans
 
