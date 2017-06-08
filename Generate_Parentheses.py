@@ -15,17 +15,12 @@ class unitest(unittest.TestCase):
         self.assertEqual(Solution().generateParenthesis(n),Ans)
 
 class Solution(object):
-    def generateParenthesis(self, n):
-        Ans = []
-        stack = [("",int(0),int(0))]
-        for node,left,right in stack:
-            if left < n:
-                stack.append((node+"(",left+1,right))
-            if left > right:
-                stack.append((node+")",left,right+1))
-            if right ==  n:
-                Ans.append(node)
-        return Ans
+    def generateParenthesis(self, n, diff = 0):
+        if n > 0 <= diff:
+            return ["(" + q for q in self.generateParenthesis(n-1, diff+1)] + \
+                   [")" + q for q in self.generateParenthesis(n, diff-1)]
+        return [')' * diff] * (not n)
+        
 
 if __name__ == '__main__':
     unittest.main()
